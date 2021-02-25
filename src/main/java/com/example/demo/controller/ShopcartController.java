@@ -149,7 +149,7 @@ public class ShopcartController {
 			User user = (User) session.getAttribute("user");
 			model.addAttribute("user", user);
 				//retrieve all shopcarts in user session
-			model.addAttribute("usercart",shopcartRepository.findAllByUsersId(user.getShopcarts()));
+			model.addAttribute("usercart",shopcartRepository.findAllByUsersId(user.getId()));
 			return "shopcart-list";
 		}
 		
