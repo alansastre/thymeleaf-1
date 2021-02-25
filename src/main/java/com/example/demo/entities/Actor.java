@@ -36,7 +36,42 @@ public class Actor implements Serializable{
 	@JoinTable(name = "actor_movie",
 	joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
-	private List<User> movies = new ArrayList<User>();
+	private List<Movie> movies = new ArrayList<Movie>();
+	
+	public Actor() {}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
+	
 	
 }
 
