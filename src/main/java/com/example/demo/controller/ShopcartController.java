@@ -147,6 +147,7 @@ public class ShopcartController {
 		public String showallshopcart(Model model, HttpSession session) {
 			// Get user and shopcart from session
 			User user = (User) session.getAttribute("user");
+			model.addAttribute("user", user);
 				//retrieve all shopcarts in user session
 			model.addAttribute("usercart",shopcartRepository.findAllByUsersId(user.getShopcarts()));
 			return "shopcart-list";
