@@ -11,6 +11,6 @@ import com.example.demo.entities.Shopcart;
 @Repository
 public interface ShopcartRepository extends JpaRepository<Shopcart, Long>{
 
-	List<Shopcart> findAllByUsersId(Long id);
+	List<Shopcart> findAllById(Long id);
 
 }
