@@ -19,7 +19,7 @@ import com.example.demo.repository.GenreRepository;
 import com.example.demo.repository.MovieRepository;
 import com.example.demo.repository.ShopcartRepository;
 import com.example.demo.repository.UserRepository;
-
+//@@
 @SpringBootApplication
 public class Thymeleaf1Application implements CommandLineRunner {
 
