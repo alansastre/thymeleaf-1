@@ -143,7 +143,7 @@ public class ShopcartController {
 	
 	
 	//*********** show the all listshops 
-		@GetMapping("/shopcarts/list")
+		@GetMapping("/shopcarts/{id}/list")
 		public String showallshopcart(Model model, HttpSession session) {
 			// Get user and shopcart from session
 			User user = (User) session.getAttribute("user");
