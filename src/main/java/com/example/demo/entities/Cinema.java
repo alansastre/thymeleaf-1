@@ -26,7 +26,7 @@ import javax.persistence.Table;
 		private Long id;
 		@Column(name="name")
 		private String name;
-		@Column(name="schudule")
+		@Column(name="schedule")
 		private String schedule;
 		@Column (name="time")
 		private Integer time;
@@ -52,14 +52,6 @@ import javax.persistence.Table;
 			
 		}
 
-		public Integer getPostalCode() {
-			return postalCode;
-		}
-
-		public void setPostalCode(Integer postalCode) {
-			this.postalCode = postalCode;
-		}
-
 		public Long getId() {
 			return id;
 		}
@@ -76,7 +68,21 @@ import javax.persistence.Table;
 			this.name = name;
 		}
 
-		
+		public String getSchedule() {
+			return schedule;
+		}
+
+		public void setSchedule(String schedule) {
+			this.schedule = schedule;
+		}
+
+		public Integer getTime() {
+			return time;
+		}
+
+		public void setTime(Integer time) {
+			this.time = time;
+		}
 
 		public Integer getRooms() {
 			return rooms;
@@ -86,6 +92,14 @@ import javax.persistence.Table;
 			this.rooms = rooms;
 		}
 
+		public Integer getPostalCode() {
+			return postalCode;
+		}
+
+		public void setPostalCode(Integer postalCode) {
+			this.postalCode = postalCode;
+		}
+
 		public List<Movie> getMovies() {
 			return movies;
 		}
@@ -93,22 +107,13 @@ import javax.persistence.Table;
 		public void setMovies(List<Movie> movies) {
 			this.movies = movies;
 		}
-		
-		public String getSchedule() {
-			return schedule;
-		}
-
-		public void setSchedule(String schedule) {
-			this.schedule = schedule;
-		}
-
-		
 
 		@Override
 		public String toString() {
-			return "Cinema [id=" + id + ", name=" + name + ", schedule=" + schedule + ", rooms=" + rooms + ", postalCode="
-					+ postalCode + "]";
+			return "Cinema [id=" + id + ", name=" + name + ", schedule=" + schedule + ", time=" + time + ", rooms="
+					+ rooms + ", postalCode=" + postalCode + "]";
 		}
+
 
 		
 		

@@ -57,6 +57,12 @@ public class Movie implements Serializable{
 	inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
 	private List<Genre> genres = new ArrayList<>();
 	
+	@ManyToMany
+	@JoinTable(name = "movie_cinema",
+	joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name = "cinema_id", referencedColumnName = "id"))
+	private List<Cinema> cinemas = new ArrayList<>();
+	
 	public Movie() {
 		
 	}
@@ -69,6 +75,22 @@ public class Movie implements Serializable{
 	}
 
 	
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+	public List<Cinema> getCinemas() {
+		return cinemas;
+	}
+
+	public void setCinemas(List<Cinema> cinemas) {
+		this.cinemas = cinemas;
+	}
+
 	public List<Genre> getGenres() {
 		return genres;
 	}
