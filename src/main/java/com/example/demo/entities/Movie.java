@@ -48,6 +48,9 @@ public class Movie implements Serializable{
 	@JoinColumn(name="id_filmproducer")
 	private FilmProducer filmProducer;
 	
+	@ManyToMany(mappedBy="id_actor")
+	private List<Actor> actors = new ArrayList<>();
+	
 	@ManyToMany
 	@JoinTable(name = "movie_genre",
 	joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
