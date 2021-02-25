@@ -136,4 +136,39 @@ public class ShopcartController {
 		session.removeAttribute("shopcart");
 		return "shopcart-checkout";
 	}
+	
+	
+	
+	
+	/*
+	 * 
+	
+	//*********** show the all listshops 
+		@GetMapping("/shopcarts/list")
+		public String showallshopcart(Model model, HttpSession session) {
+			// Get user and shopcart from session
+			Shopcart shopcart = (Shopcart) session.getAttribute("shopcart");
+			User user = (User) session.getAttribute("user");
+			
+			// if thereisnt user or session go out to movies list
+			if (shopcart == null || user == null) 
+				return "redirect:/movies";
+			
+			// retrieve user from DB
+			Optional<User> userDBOpt = userRepository.findById(user.getId());
+			if (!userDBOpt.isPresent()) // IF user doesnt exist then go out to movies list
+				return "redirect:/movies";
+			
+			// set user in shopcart
+			shopcart.setUser(userDBOpt.get());
+			// save shopcart in DB
+			shopcartRepository.save(shopcart);
+			// remove shopcart from session
+			session.removeAttribute("shopcart");
+			return "shopcart-list";
+		}
+		 */
+	
+	
+	
 }
