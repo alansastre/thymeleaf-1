@@ -9,11 +9,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.entities.Direction;
 import com.example.demo.entities.FilmProducer;
 import com.example.demo.entities.Genre;
 import com.example.demo.entities.Movie;
 import com.example.demo.entities.Shopcart;
 import com.example.demo.entities.User;
+import com.example.demo.repository.DirectionRepository;
 import com.example.demo.repository.FilmProducerRepository;
 import com.example.demo.repository.GenreRepository;
 import com.example.demo.repository.MovieRepository;
@@ -33,6 +35,8 @@ public class Thymeleaf1Application implements CommandLineRunner {
 	private FilmProducerRepository filmProducerRepository;
 	@Autowired
 	private GenreRepository genreRepository;
+	@Autowired
+	private DirectionRepository directionRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Thymeleaf1Application.class, args);
@@ -106,9 +110,20 @@ public class Thymeleaf1Application implements CommandLineRunner {
 		carrito1.setUser(user2);
 		shopcartRepository.save(carrito1);
 		
-
-
 		
+		// direcciones de prueba y incorporación en la base de datos
+		Direction direccion1 = new Direction("Calle A", "00000", "Madrid", "Spain");
+		Direction direccion2 = new Direction("Calle B", "46853", "Madrid", "Spain");
+		directionRepository.save(direccion1);
+		directionRepository.save(direccion2);
+		
+		// Se incorpora al usuario
+		user1.setDirection(direccion1);
+		userRepository.save(user1);
+		
+		user2.setDirection(direccion2);
+		userRepository.save(user2);
+		/* */
 	}
 
 }
