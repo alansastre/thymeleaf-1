@@ -136,4 +136,24 @@ public class ShopcartController {
 		session.removeAttribute("shopcart");
 		return "shopcart-checkout";
 	}
+	
+	
+	
+	
+	
+	
+	//*********** show the all listshops 
+		@GetMapping("/shopcarts/list")
+		public String showallshopcart(Model model, HttpSession session) {
+			// Get user and shopcart from session
+			User user = (User) session.getAttribute("user");
+			model.addAttribute("user", user);
+				//retrieve all shopcarts in user session
+			model.addAttribute("usercart",shopcartRepository.findAllByUserId(user.getId()));
+			return "shopcart-list";
+		}
+		
+	
+	
+	
 }
