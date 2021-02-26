@@ -112,6 +112,28 @@ public class ShopcartController {
 		return totalPrice;
 	}
 	
+	
+	
+	
+	
+	
+	//*********** show the all listshops 
+		@GetMapping("/shopcarts/list")
+		public String showallshopcart(Model model, HttpSession session) {
+			// Get user and shopcart from session
+			User user = (User) session.getAttribute("user");
+			
+			model.addAttribute("user", user.getShopcarts().size());
+             model.addAttribute("user", user);
+				//retrieve all shopcarts in user session
+			model.addAttribute("usercart",shopcartRepository.findAllById(user.getId()));
+			return "shopcart-list";
+		}
+		
+		
+		
+		
+		
 	// FINALIZE BUY
 	@GetMapping("/shopcarts/checkout")
 	public String checkout(Model model, HttpSession session) {
@@ -142,17 +164,6 @@ public class ShopcartController {
 	
 	
 	
-	//*********** show the all listshops 
-		@GetMapping("/shopcarts/{id}/list")
-		public String showallshopcart(Model model, HttpSession session) {
-			// Get user and shopcart from session
-			User user = (User) session.getAttribute("user");
-			model.addAttribute("user", user);
-				//retrieve all shopcarts in user session
-			model.addAttribute("usercart",shopcartRepository.findAllById(user.getId()));
-			return "shopcart-list";
-		}
-		
 	
 	
 	

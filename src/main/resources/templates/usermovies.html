@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" th:href="@{/movies}"><b>MOVIES</b></a>
-        <a class="nav-link" th:href="@{/usermovies/{id}/view}"><b>MY MOVIES</b></a>
+        <a class="nav-link" th:href="@{/usermovies}"><b>MY MOVIES</b></a>
         <a class="nav-link" th:href="@{/shopcart}"><b>SHOPCART</b></a>
         <a class="nav-link" th:href="@{/shopcarts/list}"><b>ORDERS</b></a>
       </div>
@@ -55,7 +55,7 @@
 					</thead>
 					<tbody>
 		
-						<tr th:each="movies: ${user.movies}">
+						<tr th:each="movies: ${movies.user}">
 							<th scope="row" th:utext="${movies.id}"></th>
 							<td th:utext="${movies.title}"></td>
 							<td th:utext="${movies.sinopsis}"></td>

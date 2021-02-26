@@ -37,7 +37,7 @@ public class MovieController {
 		return "movie-list";
 	}
 	
-	@GetMapping("/usermovies/{id}/view")
+	@GetMapping("/usermovies")
 	public String findUserMovies(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user != null)
