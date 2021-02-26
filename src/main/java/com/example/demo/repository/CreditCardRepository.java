@@ -6,4 +6,5 @@ import com.example.demo.entities.CreditCard;
 
 public interface CreditCardRepository extends JpaRepository <CreditCard, String>{
 
+
 }
