@@ -32,47 +32,45 @@
 </nav>
 
 	<div class="container mt-5">
-		<h1>Shopcart</h1>
+		<h1>Order in progress</h1>
 		<hr>
-		<h3>Shopcart items: <span th:utext="${shopcart_items}"></span></h3>
-		<h3>Total price: <span th:utext="${totalPrice}"></span></h3>
+
 		<div class="row">
 
 			<div class="col">
 
-				<a class="btn btn-success" th:href="@{/shopcarts/checkout}">Finalizar compra</a>
-				
-				<table class="table table-dark table-striped mt-3">
+								
+				 <table class="table table-dark table-striped mt-3">
 				
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
-							<th scope="col">Title</th>
-							<th scope="col">Sinopsis</th>
-							<th scope="col">Duration</th>
-							<th scope="col">Price</th>
-							<th scope="col">Actions</th>
+							
 						</tr>
 					</thead>
 					<tbody>
 		
-						<tr th:each="movie: ${shopcart.movies}">
-							<th scope="row" th:utext="${movie.id}"></th>
-							<td th:utext="${movie.title}"></td>
-							<td th:utext="${movie.sinopsis}"></td>
-							<td th:utext="${movie.duration}"></td>
-							<td th:utext="${movie.price}"></td>
-							<td>
-								<a class="btn btn-danger text-white" th:href="@{/shopcarts/{id}/deletemovie(id=${movie.id})}">Eliminar del carrito</a>
-							</td>
+						<tr th:each="cart: ${usercart}">
+							
+							<td th:utext="${cart.id}"></td>
+						<td>
+						
+							<div th:each="movie: ${cart.movies}">
+							<span class="badge bg-info text-dark" th:utext="${movie.title}"></span>
+								
+							</div>
+						</td>
+					
+						
 							
 						</tr>
 					</tbody>
 				</table>
+				</div>
 
 
 
-			</div>
+		
 
 		</div>
 
