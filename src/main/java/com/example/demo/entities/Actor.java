@@ -74,4 +74,3 @@ public class Actor implements Serializable{
 	
 	
 }
-

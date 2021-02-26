@@ -14,18 +14,10 @@
 </head>
 <body>
 <div th:replace="layout :: navbar"></div>
+<div class="container">
+<div th:if="${!list.isEmpty()}">
+<h2>Movies</h2>
 
-	<div class="container mt-5">
-		<h1>Shopcart</h1>
-		<hr>
-		<h3>Shopcart items: <span th:utext="${shopcart_items}"></span></h3>
-		<h3>Total price: <span th:utext="${totalPrice}"></span></h3>
-		<div class="row">
-
-			<div class="col">
-
-				<a class="btn btn-success" th:href="@{/shopcarts/checkout}">Finalizar compra</a>
-				
 				<table class="table table-dark table-striped mt-3">
 				
 					<thead>
@@ -34,36 +26,35 @@
 							<th scope="col">Title</th>
 							<th scope="col">Sinopsis</th>
 							<th scope="col">Duration</th>
-							<th scope="col">Price</th>
 							<th scope="col">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-		
-						<tr th:each="movie: ${shopcart.movies}">
+		<tr th:each="movie: ${list}">
+						
 							<th scope="row" th:utext="${movie.id}"></th>
 							<td th:utext="${movie.title}"></td>
 							<td th:utext="${movie.sinopsis}"></td>
 							<td th:utext="${movie.duration}"></td>
-							<td th:utext="${movie.price}"></td>
 							<td>
-								<a class="btn btn-danger text-white" th:href="@{/shopcarts/{id}/deletemovie(id=${movie.id})}">Eliminar del carrito</a>
+								<a class="btn btn-primary text-white" th:href="@{/movies/{id}/view(id=${movie.id})}">Ver</a>
+								<a class="btn btn-success text-white" th:href="@{/movies/{id}/edit(id=${movie.id})}">Editar</a>
+								<a class="btn btn-danger text-white" th:href="@{/movies/{id}/delete(id=${movie.id})}">Eliminar</a>
+								<a class="btn btn-warning text-white" th:href="@{/shopcarts/{id}/addmovie(id=${movie.id})}">Comprar</a>
 							</td>
 							
 						</tr>
 					</tbody>
 				</table>
+</div>
 
-
-
-			</div>
-
-		</div>
-
-
-
-	</div>
-
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item" th:each="page : ${pages}">
+        <a class="page-link" th:href="@{|/moviepaginada?page=${page}|}" th:text="${page}"></a>
+    </li>
+  </ul>
+</nav>
 <div th:replace="layout :: footer"></div>
 
 	<script
