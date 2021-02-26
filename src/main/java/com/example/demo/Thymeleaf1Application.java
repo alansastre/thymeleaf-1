@@ -38,6 +38,12 @@ public class Thymeleaf1Application implements CommandLineRunner {
 	@Autowired
 	private DirectionRepository directionRepository;
 	
+	@Autowired
+	private DirectorRepository directorRepository;
+	
+	
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Thymeleaf1Application.class, args);
 	}
@@ -60,6 +66,17 @@ public class Thymeleaf1Application implements CommandLineRunner {
 		filmProducerRepository.save(warner);
 		filmProducerRepository.save(paramount);
 		
+		Director director1 = new Director("Director1", "director1@com", 45);
+		Director director2 = new Director("Director2", "director2@com", 56);
+		Director director3 = new Director("Director3", "director3@com", 66);
+		Director director4 = new Director("Director4", "director4@com", 32);
+		
+		directorRepository.save(director1);
+		directorRepository.save(director2);
+		directorRepository.save(director3);
+		directorRepository.save(director4);
+	
+		
 		Movie movie1 = new Movie("Los vengadores", "La ciudad está en peligro y los ....", 160);
 		movie1.setOffer(true);
 		movie1.setUrlImg("vengadores.png");
@@ -68,6 +85,7 @@ public class Thymeleaf1Application implements CommandLineRunner {
 		movie1.setPrice(3.99);
 		movie1.setFilmProducer(paramount);
 		movie1.getGenres().addAll(Arrays.asList(accion, ciencia));
+		movie1.setDirector(director1);
 		
 		Movie movie2 = new Movie("Los extraordinarios", "La ciudad está en peligro y los ....", 120);
 		movie2.setCode(55034);
@@ -75,6 +93,7 @@ public class Thymeleaf1Application implements CommandLineRunner {
 		movie2.setOffer(true);
 		movie2.setFilmProducer(paramount);
 		movie2.getGenres().addAll(Arrays.asList(crimen, terror));
+		movie2.setDirector(director2);
 		
 		Movie movie3 = new Movie("Los developers", "El código está en peligro y los ....", 210);
 		movie3.setCode(66034);
@@ -82,6 +101,7 @@ public class Thymeleaf1Application implements CommandLineRunner {
 		movie3.setOffer(true);
 		movie3.setFilmProducer(hollywood);
 		movie3.getGenres().addAll(Arrays.asList(comedia, ficcion));
+		movie3.setDirector(director3);
 		
 		List<Movie> movies = Arrays.asList(movie1, movie2, movie3);
 		movieRepository.saveAll(movies);
@@ -94,12 +114,14 @@ public class Thymeleaf1Application implements CommandLineRunner {
 		movie4.setOffer(true);
 		movie4.setFilmProducer(warner);
 		movie4.getGenres().addAll(Arrays.asList(ciencia));
+		movie4.setDirector(director4);
 		movieRepository.save(movie4);
 
 		Movie movie5 = new Movie("Pelicula 5", "La ciudad está en peligro y los ....", 120);
 		movie5.setPrice(88.7);
 		movie5.setOffer(false);
 		movie5.setFilmProducer(warner);
+		movie5.setDirector(director1);
 		movieRepository.save(movie5);
 
 		User user2 = new User("Ayman", "ayman@example.com", 33, true, "admin");
