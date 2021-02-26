@@ -43,7 +43,7 @@ public class MovieController {
 		if(user != null)
 			model.addAttribute("user", user);
 		model.addAttribute("movies", movieRepository.findAllByUsersId(user.getId()));
-		return "usermovies";
+		return "movie-list";
 	}
 	
 	@GetMapping("/movies/{id}/view")
