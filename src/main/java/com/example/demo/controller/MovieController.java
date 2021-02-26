@@ -127,7 +127,7 @@ public class MovieController {
 	@GetMapping(value = "/moviepaginada")
 	public String finnAll (@RequestParam Map <String, Object> params, Model model){
 		int page = params.get("page") !=null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
-		PageRequest pageRequest = PageRequest.of(page, 10);
+		PageRequest pageRequest = PageRequest.of(page, 2);
 		Page<Movie> pageMovies = movieServiceAPI.gettAll(pageRequest);
 		
 		int totalPage =  pageMovies.getTotalPages();
@@ -135,7 +135,7 @@ public class MovieController {
 			List<Integer> pages = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());		
 			model.addAttribute("pages", pages);		
 		}
-		model.addAttribute("list", pageCustomer.getContent());
+		model.addAttribute("list", pageMovies.getContent());
 
 		return "moviepaginada";
 	}

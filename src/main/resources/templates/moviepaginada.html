@@ -29,7 +29,7 @@
 						</tr>
 					</thead>
 					<tbody>
-		<tr th:each="customer: ${list}">
+		<tr th:each="movie: ${list}">
 						
 							<th scope="row" th:utext="${movie.id}"></th>
 							<td th:utext="${movie.title}"></td>
@@ -50,7 +50,7 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item" th:each="page : ${pages}">
-        <a class="page-link" th:href="@{|/?page=${page}|}" th:text="${page}"></a>
+        <a class="page-link" th:href="@{|/moviepaginada?page=${page}|}" th:text="${page}"></a>
     </li>
   </ul>
 </nav>
