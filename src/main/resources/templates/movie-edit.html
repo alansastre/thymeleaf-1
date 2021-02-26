@@ -79,6 +79,13 @@
 					  <option th:each="genre: ${genresDBList}" th:value="${genre.id}" th:text="${genre.name}"></option>
 
 					</select>
+					<label class="form-check-label" for="cinema">Cinema</label>
+					
+					<select id="genres" th:field="*{cinema}" class="form-select" multiple>
+					
+					  <option th:each="cinema: ${cinemaDBList}" th:value="${cinema.id}" th:text="${cinema.name}"></option>
+
+					</select>
 					
 					<button type="submit" class="mt-5 btn btn-success">Guardar</button>
 
