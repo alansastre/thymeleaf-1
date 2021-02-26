@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,6 +54,13 @@ public class Movie implements Serializable{
 	joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
 	private List<Genre> genres = new ArrayList<>();
+	
+	
+	@ManyToOne
+	@JoinColumn(name="id_director")
+	private Director director;
+	
+	
 	
 	public Movie() {
 		
@@ -164,6 +172,15 @@ public class Movie implements Serializable{
 
 	public void setDuration(Integer duration) {
 		this.duration = duration;
+	}
+
+
+	public Director getDirector() {
+		return director;
+	}
+
+	public void setDirector(Director director) {
+		this.director = director;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.entities.Director;
 import com.example.demo.entities.Movie;
 import com.example.demo.entities.User;
+import com.example.demo.repository.DirectorRepository;
 import com.example.demo.repository.FilmProducerRepository;
 import com.example.demo.repository.GenreRepository;
 import com.example.demo.repository.MovieRepository;
@@ -27,6 +31,9 @@ public class MovieController {
 	private FilmProducerRepository filmProducerRepository;
 	@Autowired
 	private GenreRepository genreRepository;
+	
+	@Autowired
+	private DirectorRepository directorRepository;
 	
 	@GetMapping({"/movies", "/"})
 	public String findMovies(Model model, HttpSession session) {
@@ -63,6 +70,7 @@ public class MovieController {
 		model.addAttribute("movie", new Movie());
 		model.addAttribute("filmProducers", filmProducerRepository.findAll());
 		model.addAttribute("genresDBList", genreRepository.findAll());
+		model.addAttribute("directors", directorRepository.findAll());
 		return "movie-edit";
 		
 	}
@@ -72,7 +80,7 @@ public class MovieController {
 		model.addAttribute("movie", movieRepository.findById(id).get());
 		model.addAttribute("filmProducers", filmProducerRepository.findAll());
 		model.addAttribute("genresDBList", genreRepository.findAll());
-
+		model.addAttribute("directors", directorRepository.findAll());
 		return "movie-edit";
 		
 	}
@@ -88,12 +96,28 @@ public class MovieController {
 	
 	@GetMapping("/movies/{id}/delete")
 	public String deleteMovie(@PathVariable Long id) {
+		
+		List<Movie> movies = movieRepository.findAll();
+		for (Movie movie : movies) {
+		movie.setDirector(new Director());
+		directorRepository.save(movie.getDirector());	
+		}
+
 		movieRepository.deleteById(id);
 		return "redirect:/movies";
+
 	}
+	
+	
+	
 	
 	@GetMapping("/movies/delete")
 	public String deleteMovies() {
+		List<Movie> movies = movieRepository.findAll();
+		for (Movie movie : movies) {
+		movie.setDirector(new Director());
+		directorRepository.save(movie.getDirector());
+		}
 		movieRepository.deleteAll();
 		return "redirect:/movies";
 	}
