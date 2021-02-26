@@ -55,8 +55,9 @@ public class MovieController {
 	@GetMapping("/usermovies")
 	public String findUserMovies(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		if(user != null)
-			model.addAttribute("user", user);
+		if(user == null)
+			return "redirect:/login";
+		model.addAttribute("user", user);
 		model.addAttribute("movies", movieRepository.findAllByUsersId(user.getId()));
 		return "movie-list";
 	}
