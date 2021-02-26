@@ -37,13 +37,13 @@ public class MovieController {
 		return "movie-list";
 	}
 	
-	@GetMapping("/usermovies/{id}/view")
+	@GetMapping("/usermovies")
 	public String findUserMovies(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user != null)
 			model.addAttribute("user", user);
 		model.addAttribute("movies", movieRepository.findAllByUsersId(user.getId()));
-		return "usermovies";
+		return "movie-list";
 	}
 	
 	@GetMapping("/movies/{id}/view")

@@ -143,13 +143,13 @@ public class ShopcartController {
 	
 	
 	//*********** show the all listshops 
-		@GetMapping("/shopcarts/{id}/list")
+		@GetMapping("/shopcarts/list")
 		public String showallshopcart(Model model, HttpSession session) {
 			// Get user and shopcart from session
 			User user = (User) session.getAttribute("user");
 			model.addAttribute("user", user);
 				//retrieve all shopcarts in user session
-			model.addAttribute("usercart",shopcartRepository.findAllById(user.getId()));
+			model.addAttribute("usercart",shopcartRepository.findAllByUserId(user.getId()));
 			return "shopcart-list";
 		}
 		
