@@ -50,16 +50,8 @@
 					  </label>
 					</div>
 					
-					<label class="form-check-label" for="director">Director</label>
-					<select id="director" th:field="*{director}" class="form-select" >
 					
-					  <option th:each="direct: ${directors}" th:value="${direct.id}" th:text="${direct.name}"></option>
-						
-						
-						</select>
-					
-					
-					
+				
 					<label class="form-check-label" for="filmProducer">Film Producer</label>
 					<select id="filmProducer" th:field="*{filmProducer}" class="form-select" >
 					

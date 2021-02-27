@@ -36,7 +36,6 @@
 							<th scope="col">Title</th>
 							<th scope="col">Sinopsis</th>
 							<th scope="col">Duration</th>
-							<th scope="col">Director</th>
 							<th scope="col">Actions</th>
 						</tr>
 					</thead>
@@ -47,7 +46,6 @@
 							<td th:utext="${movie.title}"></td>
 							<td th:utext="${movie.sinopsis}"></td>
 							<td th:utext="${movie.duration}"></td>
-							<td th:utext="${movie.director.name}"></td>
 							<td>
 								<a class="btn btn-primary text-white" th:href="@{/movies/{id}/view(id=${movie.id})}">Ver</a>
 								<a class="btn btn-success text-white" th:href="@{/movies/{id}/edit(id=${movie.id})}">Editar</a>

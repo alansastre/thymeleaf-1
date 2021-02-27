@@ -46,8 +46,6 @@ public class MovieController {
 	@Autowired
 	private GenreRepository genreRepository;
 	
-	@Autowired
-	private DirectorRepository directorRepository;
 	
 	@GetMapping({"/movies", "/"})
 	public String findMovies(Model model, HttpSession session) {
@@ -85,7 +83,6 @@ public class MovieController {
 		model.addAttribute("movie", new Movie());
 		model.addAttribute("filmProducers", filmProducerRepository.findAll());
 		model.addAttribute("genresDBList", genreRepository.findAll());
-		model.addAttribute("directors", directorRepository.findAll());
 		return "movie-edit";
 		
 	}
@@ -95,7 +92,6 @@ public class MovieController {
 		model.addAttribute("movie", movieRepository.findById(id).get());
 		model.addAttribute("filmProducers", filmProducerRepository.findAll());
 		model.addAttribute("genresDBList", genreRepository.findAll());
-		model.addAttribute("directors", directorRepository.findAll());
 		return "movie-edit";
 		
 	}
@@ -110,13 +106,7 @@ public class MovieController {
 	}
 	
 	@GetMapping("/movies/{id}/delete")
-	public String deleteMovie(@PathVariable Long id) {
-		
-		List<Movie> movies = movieRepository.findAll();
-		for (Movie movie : movies) {
-		movie.setDirector(new Director());
-		directorRepository.save(movie.getDirector());	
-		}
+	public String deleteMovie(@PathVariable Long id){
 
 		movieRepository.deleteById(id);
 		return "redirect:/movies";
@@ -128,11 +118,6 @@ public class MovieController {
 	
 	@GetMapping("/movies/delete")
 	public String deleteMovies() {
-		List<Movie> movies = movieRepository.findAll();
-		for (Movie movie : movies) {
-		movie.setDirector(new Director());
-		directorRepository.save(movie.getDirector());
-		}
 		movieRepository.deleteAll();
 		return "redirect:/movies";
 	}
